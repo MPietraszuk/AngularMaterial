@@ -28,4 +28,10 @@ export class NotesComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Note>(this.notes);
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
 }
