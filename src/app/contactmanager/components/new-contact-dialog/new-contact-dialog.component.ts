@@ -31,9 +31,9 @@ export class NewContactDialogComponent implements OnInit {
   }
 
   save() {
-
-    this.dialogRef.close(this.user);
-
+    this.userService.addUser(this.user).then(user => {
+      this.dialogRef.close(user);
+    });
   }
 
   dismiss() {
