@@ -14,12 +14,11 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 })
 export class SidenavComponent implements OnInit {
 
-  @ViewChild(MatSidenav, { static: false }) sidenav: MatSidenav;
-
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
   users: Observable<User[]>;
+  isDarkTheme: boolean = false;
 
   constructor(
     zone: NgZone,
@@ -28,6 +27,11 @@ export class SidenavComponent implements OnInit {
     zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`));
   }
 
+  @ViewChild(MatSidenav, { static: false }) sidenav: MatSidenav;
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+  }
 
   ngOnInit() {
     this.users = this.userService.users;
